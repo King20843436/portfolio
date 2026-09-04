@@ -9,7 +9,6 @@ from sqlalchemy.exc import IntegrityError
 import os
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv # 1. جديد للامان
-import os
 
 
 
@@ -26,11 +25,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'mahmoud2040758@gmail.com'
-#app.config['MAIL_PASSWORD'] = os.getenv('MAIL-PASSWORD') # 3. اتغيرت عشان الامان
-app.config['MAIL_PASSWORD'] = 'abcd efgh ijkl mnop' # حط الكود الجديد هنا مباشر
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL-PASSWORD') # 3. اتغيرت عشان الامان
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME') # حط الكود الجديد هنا مباشر
 
-app.config['MAIL_DEFAULT_SENDER'] = 'mahmoud2040758@gmail.com'
 mail = Mail(app)
 # ===========================
 
@@ -39,8 +37,7 @@ def allowed_file(filename):
 
 db = SQLAlchemy(app)
 
-with app.app_context():
-    db.create_all()   
+
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -268,6 +265,9 @@ def delete_project(id):
     db.session.delete(project)
     db.session.commit()
     return redirect(url_for('admin'))
+
+with app.app_context():
+    db.create_all()   
 
 if __name__ == '__main__':
     with app.app_context():
