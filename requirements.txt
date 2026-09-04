@@ -1,10 +1,7 @@
 Flask
 gunicorn
-Flask-Mail 
-requests 
 Flask-SQLAlchemy
+Flask-Login
+Flask-Mail 
 python-dotenv 
-werkzeug
-os
-datetime
-Flask-login
+requests
