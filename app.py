@@ -8,11 +8,10 @@ from datetime import datetime
 from sqlalchemy.exc import IntegrityError
 import os
 from werkzeug.utils import secure_filename
-from dotenv import load_dotenv # 1. جديد للامان
+from dotenv import load_dotenv 
 
 
-
-load_dotenv() # 2. جديد للامان
+load_dotenv() 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'my_secret_key_123456'
