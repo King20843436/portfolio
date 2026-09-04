@@ -1,6 +1,6 @@
 Flask
 gunicorn
 Flask-Mail 
-Flask-login  
+requests 
 Flask-SQLAlchemy
-Flask-dotenv 
+python-dotenv 
