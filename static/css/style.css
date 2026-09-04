@@ -1,0 +1,101 @@
+/* ===== Portfolio Pro - Main Style ===== */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Poppins:wght@400;600&display=swap');
+
+:root {
+  --main: #00d9ff;
+  --main2: #7c4dff;
+  --bg: #070b14;
+  --card: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.1);
+  --text: #e6e8ec;
+  --muted: #9aa0a6;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Cairo','Poppins', sans-serif;
+  background: var(--bg) url('../bg.png') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* طبقة تعتيم فوق الخلفية عشان النص يوضح */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(7,11,20,0.85);
+  backdrop-filter: blur(2px);
+  z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+  background: rgba(7,11,20,0.7) !important;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+  padding: 15px 0;
+}
+.navbar-brand {
+  font-weight: 800;
+  color: var(--main) !important;
+  letter-spacing: 1px;
+}
+.nav-link { color: var(--text) !important; margin: 0 10px; transition: 0.3s; }
+.nav-link:hover { color: var(--main) !important; }
+
+/* Hero Section */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+.hero h1 { font-size: 3.5rem; font-weight: 800; }
+.hero h1 span {
+  background: linear-gradient(90deg, var(--main), var(--main2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p { color: var(--muted); font-size: 1.2rem; max-width: 600px; }
+
+/* Buttons */
+.btn-main {
+  background: linear-gradient(90deg, var(--main), var(--main2));
+  color: #fff; border: none; padding: 12px 30px;
+  border-radius: 30px; font-weight: 600; transition: 0.3s;
+  display: inline-block; text-decoration: none;
+}
+.btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,217,255,0.3); color: #fff; }
+
+/* Cards */
+.card-custom {
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  transition: 0.3s;
+}
+.card-custom:hover { transform: translateY(-5px); border-color: var(--main); }
+
+/* Sections */
+section { padding: 80px 0; }
+.section-title { font-weight: 800; font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
+.section-title::after {
+  content: ""; display: block; width: 60px; height: 4px;
+  background: var(--main); margin: 15px auto 0; border-radius: 2px;
+}
+
+/* Footer */
+footer { border-top: 1px solid var(--border); padding: 30px 0; text-align: center; color: var(--muted); margin-top: 50px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.2rem; }
+  section { padding: 50px 0; }
+}
