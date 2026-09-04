@@ -1,11 +1,6 @@
 Flask
 gunicorn
-request
-mail 
-login 
-werkzeug
-datetime 
-sqlalchemy
-werkzeug
-dotenv 
-os
+Flask-Mail 
+Flask-login  
+Flask-SQLAlchemy
+Flask-dotenv 
