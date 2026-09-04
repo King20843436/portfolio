@@ -1,0 +1,11 @@
+Flask
+gunicorn
+request
+mail 
+login 
+werkzeug
+datetime 
+sqlalchemy
+werkzeug
+dotenv 
+os
