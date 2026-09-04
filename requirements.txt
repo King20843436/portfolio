@@ -4,3 +4,7 @@ Flask-Mail
 requests 
 Flask-SQLAlchemy
 python-dotenv 
+werkzeug
+os
+datetime
+Flask-login
