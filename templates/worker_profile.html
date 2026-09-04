@@ -1,0 +1,8 @@
+{% for p in worker.payrolls %}
+<tr>
+    <td>{{ p.month }}/{{ p.year }}</td>
+    <td>{{ p.net_salary }} {{ s.currency }}</td>
+</tr>
+{% else %}
+<tr><td colspan="2">لم يتم حساب راتب بعد</td></tr>
+{% endfor %}

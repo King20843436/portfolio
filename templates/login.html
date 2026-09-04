@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section style="max-width:400px; margin:50px auto; background:#1e293b; padding:2rem; border-radius:10px;">
+    <h2 style="text-align:center;">تسجيل الدخول</h2>
+    <form method="POST">
+        <label>الإيميل:</label><br>
+        <input type="email" name="email" required style="width:100%; padding:10px; margin:10px 0; background:#334155; color:white;"><br>
+
+        <label>كلمة السر:</label><br>
+        <input type="password" name="password" required style="width:100%; padding:10px; margin:10px 0; background:#334155; color:white;"><br>
+
+        <button type="submit" style="width:100%; padding:12px; background:#0ea5e9; color:white; border:none; border-radius:5px; cursor:pointer;">دخول</button>
+    </form>
+    <p style="text-align:center; margin-top:15px;">معندكش حساب؟ <a href="/register" style="color:#0ea5e9;">سجل هنا</a></p>
+</section>
+{% endblock %}  <!-- السطر ده كان ناقص -->

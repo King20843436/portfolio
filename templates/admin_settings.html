@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الاعدادات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>body{font-family:'Cairo'}</style>
+</head>
+<body class="bg-slate-900 text-white p-6">
+    <div class="container mx-auto max-w-3xl">
+
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-green-400">اعدادات الموقع</h1>
+            <a href="{{ url_for('admin') }}" class="bg-slate-700 px-4 py-2 rounded-lg">العودة للوحة التحكم</a>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="bg-green-500 p-4 rounded-lg mb-6 text-center">{{ messages[0] }}</div>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" class="bg-slate-800 p-6 rounded-2xl space-y-4">
+            <div>
+                <label class="block mb-2 text-slate-300">الاسم</label>
+                <input name="name" value="{{ settings.name }}" class="w-full p-3 bg-slate-700 rounded border-slate-600 focus:border-green-500 outline-none">
+            </div>
+
+            <div>
+                <label class="block mb-2 text-slate-300">المسمى الوظيفي</label>
+                <input name="title" value="{{ settings.title }}" class="w-full p-3 bg-slate-700 rounded border-slate-600 focus:border-green-500 outline-none">
+            </div>
+
+            <div>
+                <label class="block mb-2 text-slate-300">نبذة قصيرة</label>
+                <textarea name="bio" rows="2" class="w-full p-3 bg-slate-700 rounded border border-slate-600 focus:border-green-500 outline-none">{{ settings.bio }}</textarea>
+            </div>
+
+            <div>
+                <label class="block mb-2 text-slate-300">من نحن</label>
+                <textarea name="about" rows="4" class="w-full p-3 bg-slate-700 rounded border border-slate-600 focus:border-green-500 outline-none">{{ settings.about }}</textarea>
+            </div>
+
+            <button class="bg-green-500 hover:bg-green-600 w-full py-3 rounded font-bold">حفظ التعديلات</button>
+        </form>
+    </div>
+</body>
+</html>
