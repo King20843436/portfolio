@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اعدادات الموقع</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-dark fixed-top"><div class="container"><a class="navbar-brand" href="/admin">← رجوع للداشبورد</a></div></nav>
+<div class="container" style="padding-top:100px;">
+  <div class="card-custom col-md-8 mx-auto">
+    <h3 class="mb-4" style="color:var(--accent)">⚙️ اعدادات صفحات الموقع</h3>
+    <p class="small" style="color:var(--muted)">أي شي تغيره هنا راح يظهر فورا في الصفحة الرئيسية في أقسام "عني" و "الرئيسية"</p>
+
+    <form method="POST">
+      <div class="mb-3">
+        <label class="form-label">اسمك (يظهر في الرئيسية والـ Navbar)</label>
+        <input type="text" name="name" class="form-control" value="{{ settings.get('name','') }}" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">المسمى الوظيفي (تحت اسمك)</label>
+        <input type="text" name="title" class="form-control" value="{{ settings.get('title','') }}" required>
+        <small style="color:var(--muted)">مثال: مطور تطبيقات ويب بـ Flask & React</small>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">الجملة التعريفية القصيرة (Bio)</label>
+        <input type="text" name="bio" class="form-control" value="{{ settings.get('bio','') }}" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">نص صفحة "عني" بالكامل (هذا اللي كنت تبيه من القاعدة)</label>
+        <textarea name="about" class="form-control" rows="6" required>{{ settings.get('about','') }}</textarea>
+        <small style="color:var(--muted)">اكتب هنا قصتك، خبرتك، كل شي، وراح ينعرض في قسم "عني"</small>
+      </div>
+      <button type="submit" class="btn-main w-100">💾 حفظ التغييرات</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

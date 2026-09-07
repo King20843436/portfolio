@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="contact">
+    <h1>تواصل معي</h1>
+    <p>عندك فكرة مشروع؟ خلينا نتكلم</p>
+    
+    <div class="contact-info">
+        <p><b>واتساب:</b> <a href="https://wa.me/222XXXXXXXX">+222 46518821</a></p>
+        <p><b>إيميل:</b> mahmoud2040@hotmail.fr</p>
+        <p><b>الموقع:</b> نواكشوط، موريتانيا</p>
+    </div>
+
+    <form method="POST" action="#" class="contact-form">
+        <input type="text" name="name" placeholder="اسمك" required>
+        <input type="email" name="email" placeholder="إيميلك" required>
+        <textarea name="message" placeholder="اكتب رسالتك..." rows="5" required></textarea>
+        <button type="submit" class="btn">إرسال الرسالة</button>
+    </form>
+</section>
+{% endblock %}

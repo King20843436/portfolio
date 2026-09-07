@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم - Mahmoud</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+.table-dark { --bs-table-bg: transparent; }
+.badge { padding: 6px 12px; border-radius: 20px; }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Mahmoud El kowry</a>
+    <div class="ms-auto d-flex gap-2">
+      <a href="/" class="btn btn-outline-light btn-sm">عرض الموقع</a>
+      <a href="/logout" class="btn btn-danger btn-sm">خروج</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="padding-top: 100px;">
+  <h2 class="mb-4" style="color: var(--accent);">لوحة التحكم 👑</h2>
+<div class="mb-4 d-flex gap-2 flex-wrap">
+  <a href="/admin/settings" class="btn-main btn-sm" style="padding:6px 15px;">⚙️ اعدادات عني</a>
+  <a href="/admin/experience" class="btn btn-outline-light btn-sm" style="border-radius:20px;">+ خبرة</a>
+  <a href="/admin/education" class="btn btn-outline-light btn-sm" style="border-radius:20px;">+ تعليم</a>
+</div>
+
+  <!-- كروت الاحصائيات -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-4">
+      <div class="card-custom text-center" style="border-right: 4px solid #38bdf8;">
+        <h6 style="color:var(--muted)">إجمالي الحسابات</h6>
+        <h1 style="color:#38bdf8; font-weight:bold; font-size: 3rem;">{{ users_count }}</h1>
+        <small style="color:var(--muted)">حساب مسجل</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-custom text-center" style="border-right: 4px solid #8b5cf6;">
+        <h6 style="color:var(--muted)">المشاريع</h6>
+        <h1 style="color:#8b5cf6; font-weight:bold; font-size: 3rem;">{{ projects|length }}</h1>
+        <small style="color:var(--muted)">مشروع منشور</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card-custom text-center" style="border-right: 4px solid #22c55e;">
+        <h6 style="color:var(--muted)">الرسائل</h6>
+        <h1 style="color:#22c55e; font-weight:bold; font-size: 3rem;">{{ messages|length }}</h1>
+        <small style="color:var(--muted)">رسالة جديدة</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- جدول الحسابات -->
+  <div class="card-custom mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 style="color:var(--accent)">👥 الحسابات المسجلة</h4>
+      <span class="badge bg-info">{{ users_count }} مستخدم</span>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-dark table-hover align-middle">
+        <thead>
+          <tr style="color: var(--muted);">
+            <th>#</th>
+            <th>الاسم</th>
+            <th>الايميل</th>
+            <th>الصلاحية</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in users %}
+          <tr>
+            <td>{{ u.id }}</td>
+            <td style="font-weight: 600;">{{ u.name }}</td>
+            <td style="color: var(--muted);">{{ u.email }}</td>
+            <td>
+              {% if u.is_admin %}
+                <span class="badge bg-success">👑 ادمن</span>
+              {% else %}
+                <span class="badge bg-secondary">مستخدم</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="4" class="text-center text-muted">لا يوجد حسابات</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- المشاريع -->
+  <div class="card-custom mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 style="color:var(--accent)">💼 المشاريع</h4>
+      <a href="/add_project" class="btn-main btn-sm" style="padding: 5px 15px;">+ اضافة مشروع</a>
+    </div>
+    <div class="row g-3">
+      {% for p in projects %}
+      <div class="col-md-4">
+        <div class="p-3 rounded" style="background: #0f172a; border: 1px solid #334155;">
+          <h6>{{ p.title }}</h6>
+          <p class="small" style="color: var(--muted);">{{ p.description[:80] }}...</p>
+          <div class="d-flex gap-2">
+            <a href="/edit_project/{{ p.id }}" class="btn btn-warning btn-sm">تعديل</a>
+            <a href="/delete_project/{{ p.id }}" class="btn btn-danger btn-sm" onclick="return confirm('متأكد تحذف؟')">حذف</a>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <p class="text-muted text-center">لا يوجد مشاريع بعد</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- الرسائل -->
+  <div class="card-custom">
+    <h4 class="mb-3" style="color:var(--accent)">📩 الرسائل</h4>
+    {% for m in messages %}
+    <div class="p-3 mb-2 rounded" style="background: #0f172a; border: 1px solid #334155;">
+      <div class="d-flex justify-content-between">
+        <strong>{{ m.name }}</strong>
+        <small style="color: var(--muted);">{{ m.email }}</small>
+      </div>
+      <p class="mt-2 mb-0" style="color: var(--muted);">{{ m.message }}</p>
+    </div>
+    {% else %}
+    <p class="text-muted text-center">لا يوجد رسائل</p>
+    {% endfor %}
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Portfolio</title>
+  
+</head>
+<body>
+<nav>
+    <a href="/">الرئيسية</a>
+    <a href="/#about">من نحن</a>
+    <a href="/#portfolio">أعمالنا</a>
+    <a href="/#contact">اتصل بنا</a>
+    {% if current_user.is_authenticated %}
+        {% if current_user.is_admin %}<a href="/admin">لوحة التحكم</a>{% endif %}
+        <a href="/logout">خروج</a>
+    {% else %}
+        <a href="/login">دخول</a>
+        <a href="/register">تسجيل</a>
+    {% endif %}
+</nav>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}<p style="color:yellow; text-align:center;">{{ messages[0] }}</p>{% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

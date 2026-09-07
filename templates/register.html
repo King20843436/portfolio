@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container" style="min-height:100vh; display:flex; align-items:center; justify-content:center;">
+  <div class="card-custom col-md-6">
+    <h3 class="text-center mb-4" style="color:var(--accent)">انشاء حساب جديد</h3>
+    <form method="POST">
+      <div class="row g-3">
+        <div class="col-md-6"><input type="text" name="name" class="form-control" placeholder="الاسم" required></div>
+        <div class="col-md-6"><input type="email" name="email" class="form-control" placeholder="الايميل" required></div>
+        <div class="col-md-8"><input type="password" name="password" class="form-control" placeholder="كلمة السر" required></div>
+        <div class="col-md-4"><button type="submit" class="btn-main w-100">تسجيل</button></div>
+      </div>
+    </form>
+    <p class="text-center mt-3">عندك حساب؟ <a href="/login" style="color:var(--accent)">سجل دخول</a></p>
+  </div>
+</div>
+</body>
+</html>
